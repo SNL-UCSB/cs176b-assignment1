@@ -37,7 +37,8 @@ The monitor host only receives and processes the headers of each packet. If any 
 For this assignment, we will use Mininet to emulate the topology shown above, and use P4 language to configure the packet processing pipelines for the software switches. 
 
 ## Task 0: Setup the VM
-In assignment 0, you used `vagrant` to setup the VM. For this assignment, we need to install a few missing dependencies on our VM. (AG: please instruct them to do git pull)
+In assignment 0, you used `vagrant` to setup the VM. For this assignment, we need to install a few missing dependencies on our VM.
+0. Run a ```git pull``` in the directory to get any new commits
 1. Enter the directory containing the Vagrantfile for your VM.
 2. Turn on the VM ```vagrant up```
 3. Log into the VM ```vagrant ssh```
@@ -46,9 +47,7 @@ In assignment 0, you used `vagrant` to setup the VM. For this assignment, we nee
 ## Task 1: Create Network Topology.
 The goal of this task is to write the Python script that uses Mininet to emulate the topology shown above. For your convenience, we have provided a template file, [`start_mininet.py`](#) that you can edit. 
 
-AG: I think it will be better if the students run the Mininet setup w/o Makefile here. Also, please provide specific instruction on where to find these files in the VM.
-
-You can run this file using the `Makefile` provided for you (AG: where?). This file takes care of compiling your P4 program and running `start_mininet.py`.
+You can run this file using the `Makefile` provided for you. This file takes care of compiling your P4 program and running `start_mininet.py`. The `Makefile` prints out and executes the commands needed to be run, to compile your P4 program and start Mininet. You can use these commands to compile your P4 program separately or start Mininet without recompiling your P4 program.
 
 The file that we provided is not complete. Thus, when you try running the command `pingall`, it won't work. Your task is to add the necessary links to realize the topology shown above. We've set the default link type in Mininet as `TCLink`, this allows us to modify characteristics of the link such as bandwidth, delay, loss, and queue size. For your reference, we have provided `TODO` comments for you in the `init()` function of the `CoreP4Topo` class. Make sure to add the links in the specified order for traffic to be routed correctly. 
 
@@ -79,8 +78,6 @@ The packet processing pipelines at these switches perform the following tasks. I
 
 
 For your convenience, we have provided the template file, `monitor.p4`. Please fill in the TODO comments in the ingress and egress processing part of the pipelines. Please refer to Case 0 in the experiment section below to test your P4 implementation.
-
-AG: I think we should provide the packet header stack, similar to the one shown in the MRI tutorial. That will help them understand how it is different from MRI and also develop the scapy-based receiver.
 
 **Note**
 This task has some similarities with the [Multi-hop route inspector (MRI)](https://github.com/p4lang/tutorials/tree/master/exercises/mri) tutorial. However, unlike MRI, it clones the probe packets, adds the queue size information for just one switch, and compares the queue size value with a threshold value before sending it to the monitor. 
